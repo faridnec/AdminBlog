@@ -17,6 +17,21 @@ public class BlogController : Controller
     }
     public IActionResult Index()
     {
+        //model yollama
+        var list = _context.Blog.ToList();
+
+        return View(list);
+    }
+    public IActionResult Publish(int Id)
+    {   
+        var blog = _context.Blog.Find(Id);
+        blog.IsPublish=true;
+        _context.Update(blog);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+        public IActionResult Blog()
+    {
         //Category yollar
         ViewBag.Categories = _context.Category.Select(w =>
             new SelectListItem{
