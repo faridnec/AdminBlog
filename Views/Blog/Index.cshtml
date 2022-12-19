@@ -20,7 +20,6 @@
                     <a class="btn btn-success">Published</a>
                 }else{
                     <a class="btn btn-light" asp-route-id="@item.Id" asp-action="Publish">Publish</a>
-
                 }
             </td>
             </tr>
@@ -28,35 +27,4 @@
     </tbody>
 </table>
 
-<div class="modal" id="AuthorModal" tabindex="-1"><!-- Modal -->
-<div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title">Author :</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <form method="POST" action="/Home/AddAuthor" autocomplete="off">
-        <div class="modal-body">
-            <div class="form-group">
-                <input type="hidden" name="Id" id="Id" class="form-control">
-                <input type="text" name="Name" id="Name" class="form-control" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <input type="text" name="Surname" id="Surname" class="form-control" placeholder="Surname">
-            </div>
-            <div class="form-group">
-                <input type="text" name="Email" id="Email" class="form-control" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <input type="text" name="Password" id="Password" class="form-control" placeholder="Password">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="clearForm()" data-bs-dismiss="modal">Close</button>
-            <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
-            <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
-        </div>
-    </form>
-    </div>
-</div>
-</div>
+
