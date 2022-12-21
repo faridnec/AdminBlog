@@ -4,7 +4,7 @@ using AdminBlog.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdminBlog.Controllers;
-
+//[Filter.UserFilter]
 public class BlogController : Controller
 {
     private readonly ILogger<BlogController> _logger;

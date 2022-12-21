@@ -4,6 +4,7 @@ using AdminBlog.Models;
 
 namespace AdminBlog.Controllers;
 
+//[Filter.UserFilter]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -15,17 +16,17 @@ public class HomeController : Controller
         _context = context;
     }
 
-        public IActionResult Login(string Email, string Password)
+    public IActionResult Login(string Email, string Password)
+    {
+        var author = _context.Author.FirstOrDefault(w => w.Email == Email && w.Password == Password);
+        if (author == null)
         {
-            var author = _context.Author.FirstOrDefault(w => w.Email == Email && w.Password == Password);
-            if (author == null)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            HttpContext.Session.SetInt32("id",author.Id);
-
-            return RedirectToAction(nameof(Category));
+            return RedirectToAction(nameof(Index));
         }
+        HttpContext.Session.SetInt32("id",author.Id);
+
+        return RedirectToAction(nameof(Category));
+    }
 
     public async Task<IActionResult> AddCategory(Category category){ //Category Nesnesi
         //Update icin add ile ayni form ile kullaniyorum
@@ -92,6 +93,12 @@ public class HomeController : Controller
         
         return RedirectToAction(nameof(Author));
     }
+
+    public IActionResult LogOut(){
+        HttpContext.Session.Clear();
+        return RedirectToAction(nameof(Index));
+    }
+
     public IActionResult Index()
     {
         return View();
