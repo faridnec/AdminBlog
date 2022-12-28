@@ -39,16 +39,18 @@
                         </li>
                         }
                         <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Category">@language.Getkey("Category")</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Posted">@language.Getkey("Posted")</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Author">@language.Getkey("Author")</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Category">@language.Getkey("Category")</a>
                         </li>
+                        @if(id is 3){
                         <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Blog" asp-action="Index">@language.Getkey("Blog")</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Author">@language.Getkey("Author")</a>
                         </li>
+                        }
                         <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Post" asp-action="Index">@language.Getkey("Posted")</a>
+                            <a class="nav-link" asp-area="" asp-controller="Blog" asp-action="Index">@language.Getkey("Blog")</a>
                         </li>
                     </ul>
                     <div class="dropdown">

@@ -1,0 +1,47 @@
+﻿@model Author
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<div class="row">
+    <!-- Modal -->
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Enter your information :</h6>
+            </div>
+            <form method="POST" action="/Home/Registration" autocomplete="off">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" name="Id" id="Id" class="form-control">
+                        <label asp-for="Name"></label>: <input asp-for="Name" id="Name" class="form-control"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Surname"></label>: <input asp-for="Surname" id="Surname" class="form-control"/>
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>: <input asp-for="Email" id="Email" class="form-control"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>: <input asp-for="Password" id="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" onclick="info()" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function info() {
+        alert("your information is processed");
+    }
+</script>

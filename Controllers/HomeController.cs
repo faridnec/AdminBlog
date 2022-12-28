@@ -26,7 +26,7 @@ public class HomeController : Controller
         }
         HttpContext.Session.SetInt32("id",author.Id);
 
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Posted));
     }
 
     public async Task<IActionResult> AddCategory(Category category){ //Category Nesnesi
@@ -86,7 +86,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Category));
     }
 
-        public async Task<IActionResult> DeleteAuthor(int? Id)
+    public async Task<IActionResult> DeleteAuthor(int? Id)
     {
         var author = await _context.Author.FindAsync(Id);
         _context.Remove(author);
@@ -98,6 +98,46 @@ public class HomeController : Controller
     public IActionResult LogOut(){
         HttpContext.Session.Clear();
         return RedirectToAction(nameof(Index));
+    }
+
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> Registration(Author author)
+    { //Category Nesnesi
+        //Update icin add ile ayni form ile kullaniyorum
+        if (author.Id == 0 && ModelState.IsValid)
+        {//eger daha oncesinde veritabaninda bir kayit yoksa add
+            await _context.AddAsync(author);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        else
+        {//var ise update
+            return View("Error");
+        }
+    }
+
+    public IActionResult Post(int Id)
+    {
+        var blog = _context.Blog.Find(Id);
+        blog.Author = _context.Author.Find(blog.AuthorId); //yazar atama. null reference hatasi giderilmesi
+        blog.ImagePath = "/img/" + blog.ImagePath;
+        return View(blog);
+    }
+
+    public IActionResult Posted()
+    {
+        //LINQ
+        var list = _context.Blog.Take(4).Where(b => b.IsPublish).OrderByDescending(x => x.CreateTime).ToList();//display 4 blogs by descending (able to be modified)
+        foreach (var blog in list)
+        {
+            blog.Author = _context.Author.Find(blog.AuthorId);//id si verilen yazari blog'un yazarina ekliyor
+        }
+        return View(list);
     }
 
     public IActionResult Index()

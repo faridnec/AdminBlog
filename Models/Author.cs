@@ -5,8 +5,9 @@ namespace AdminBlog.Models{
     public class Author{
         public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Surname is required")]
+        [Required(ErrorMessage = "Surname")]
         public string Surname { get; set; }
         [DataType(DataType.EmailAddress)]
         [EmailAddress]

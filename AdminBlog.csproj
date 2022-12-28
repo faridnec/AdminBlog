@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Post\**" />
+    <Content Remove="Views\Post\**" />
+    <EmbeddedResource Remove="Views\Post\**" />
+    <None Remove="Views\Post\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.12" />
     <PackageReference Include="Microsoft.AspnetCore.Session" Version="2.2.0" />
