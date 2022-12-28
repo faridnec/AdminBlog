@@ -18,7 +18,8 @@ public class PostController : Controller
 
     public IActionResult Index()
     {
-        var list = _context.Blog.Take(4).Where(b => b.IsPublish).OrderByDescending(x => x.CreateTime).ToList();//display 4 blogs (able to be modified)
+        //LINQ
+        var list = _context.Blog.Take(4).Where(b => b.IsPublish).OrderByDescending(x => x.CreateTime).ToList();//display 4 blogs by descending (able to be modified)
         foreach (var blog in list){
             blog.Author = _context.Author.Find(blog.AuthorId);//id si verilen yazari blog'un yazarina ekliyor
         }
