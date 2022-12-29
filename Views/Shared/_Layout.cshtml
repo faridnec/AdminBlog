@@ -1,8 +1,9 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+@using Microsoft.AspNetCore.Http;
 @{
     int? id = Context.Session.GetInt32("id");
 }
-@inject LanguageService language;
+@inject IViewLocalizer localizer;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,35 +36,28 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if(!id.HasValue){
                         <li class="nav-item"> 
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@language.Getkey("Home")</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@localizer["Home"]</a>
                         </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Posted">@language.Getkey("Posted")</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Posted">@localizer["Posted"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Category">@language.Getkey("Category")</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Category">@localizer["Category"]</a>
                         </li>
                         @if(id is 3){
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Author">@language.Getkey("Author")</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Author">@localizer["Author"]</a>
                         </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Blog" asp-action="Index">@language.Getkey("Blog")</a>
+                                <a class="nav-link" asp-area="" asp-controller="Blog" asp-action="Index">@localizer["Blog"]</a>
                         </li>
                     </ul>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @language.Getkey("language")
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item nav-link" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="tr-TR">Turkish</a>
-                                <a class="dropdown-item nav-link" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="id-ID">Indonesian</a>
-                                <a class="dropdown-item nav-link" asp-controller="Home" asp-action="ChangeLanguage" asp-route-culture="en-US">English</a>
-                        </div>
+                        <partial class="btn btn-secondary" name="_SelectLanguagePartial"/>
                     </div>
-                        <a href="/Home/LogOut" class="btn btn-danger nav-link" style="color: white;">@language.Getkey("logout")</a>
+                        <a href="/Home/LogOut" onclick="logout()" class="btn btn-danger nav-link" style="color: white;">@localizer["Logout"]</a>
                 </div>
             </div>
         </nav>
@@ -79,9 +73,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@localizer["Home"]</a>
                         </li>
                     </ul>
+                    <div>
+                        <partial name="_SelectLanguagePartial" />
+                    </div>
                 </div>
             </div>
         </nav>
@@ -104,6 +101,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function logout() {
+            if (confirm("Press a button!")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

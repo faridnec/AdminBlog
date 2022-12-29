@@ -21,14 +21,14 @@
           "AdminBlog.dll": {}
         },
         "resources": {
-          "en-US/AdminBlog.resources.dll": {
-            "locale": "en-US"
+          "en/AdminBlog.resources.dll": {
+            "locale": "en"
           },
-          "id-ID/AdminBlog.resources.dll": {
-            "locale": "id-ID"
+          "id/AdminBlog.resources.dll": {
+            "locale": "id"
           },
-          "tr-TR/AdminBlog.resources.dll": {
-            "locale": "tr-TR"
+          "tr/AdminBlog.resources.dll": {
+            "locale": "tr"
           }
         }
       },

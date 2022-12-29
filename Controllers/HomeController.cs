@@ -22,6 +22,7 @@ public class HomeController : Controller
         var author = _context.Author.FirstOrDefault(w => w.Email == Email && w.Password == Password);
         if (author == null)
         {
+            TempData["Error"] = "Incorrect Email or Password";
             return RedirectToAction(nameof(Index));
         }
         HttpContext.Session.SetInt32("id",author.Id);
@@ -29,6 +30,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Posted));
     }
 
+    [HttpPost]
     public async Task<IActionResult> AddCategory(Category category){ //Category Nesnesi
         //Update icin add ile ayni form ile kullaniyorum
         if(category.Id == 0){//eger daha oncesinde veritabaninda bir kayit yoksa add
@@ -41,6 +43,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Category));
     }
 
+    [HttpPost]
     public async Task<IActionResult> AddAuthor(Author author){ //Category Nesnesi
         //Update icin add ile ayni form ile kullaniyorum
         if(author.Id == 0){//eger daha oncesinde veritabaninda bir kayit yoksa add
@@ -105,19 +108,21 @@ public class HomeController : Controller
         return View();
     }
 
-    public async Task<IActionResult> Registration(Author author)
+    [HttpPost]
+    public IActionResult Registration(Author author)
     { //Category Nesnesi
         //Update icin add ile ayni form ile kullaniyorum
-        if (author.Id == 0 && ModelState.IsValid)
+        if (author.Id == 0)
         {//eger daha oncesinde veritabaninda bir kayit yoksa add
-            await _context.AddAsync(author);
-            await _context.SaveChangesAsync();
+            _context.Add(author);
+            _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
         }
         else
-        {//var ise update
-            return View("Error");
+        {
+            TempData["Error"] = "Please fill the form correctly";
+            return RedirectToAction(nameof(Register));
         }
     }
 
@@ -145,13 +150,16 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult ChangeLanguage(string culture)
+    [HttpPost]
+    public IActionResult SetLanguage(string culture, string returnUrl)
     {
-        Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+        Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
             CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-            new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+            new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
 
-        return Redirect(Request.Headers["Referer"].ToString());
+        return Redirect(returnUrl);
     }
 
     public IActionResult Privacy()

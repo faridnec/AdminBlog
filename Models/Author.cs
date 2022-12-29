@@ -7,7 +7,7 @@ namespace AdminBlog.Models{
         [Required(ErrorMessage = "Name is required")]
         [Display(Name = "Name")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Surname")]
+        [Required(ErrorMessage = "Surname is required")]
         public string Surname { get; set; }
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
