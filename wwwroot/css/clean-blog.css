@@ -1,13 +1,14 @@
-/*!
+﻿/*!
  * Start Bootstrap - Clean Blog v5.0.8 (https://startbootstrap.com/template-overviews/clean-blog)
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 body {
-  font-size: 20px;
-  color: #212529;
-  font-family: 'Lora', 'Times New Roman', serif;
+    font-size: 20px;
+    color: #212529;
+    font-family: "Lato", sans-serif;
 }
 
 p {
@@ -25,8 +26,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 800;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-family: "Lato", sans-serif;
 }
 
 a {

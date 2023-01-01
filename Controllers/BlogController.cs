@@ -2,19 +2,21 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AdminBlog.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminBlog.Controllers;
 //[Filter.UserFilter]
 public class BlogController : Controller
 {
     private readonly ILogger<BlogController> _logger;
-    private readonly BlogContext _context;//veri tabani context sinifi tanitma
+    private readonly BlogDbContext _context;//veri tabani context sinifi tanitma
 
-    public BlogController(ILogger<BlogController> logger, BlogContext context)
+    public BlogController(ILogger<BlogController> logger, BlogDbContext context)
     {
         _logger = logger;
         _context = context;
     }
+
     public IActionResult Index()
     {
         //model yollama
@@ -22,6 +24,8 @@ public class BlogController : Controller
 
         return View(list);
     }
+
+    [Authorize(Roles = "Administrator")]
     public IActionResult Publish(int Id)
     {   
         var blog = _context.Blog.Find(Id);
@@ -30,7 +34,18 @@ public class BlogController : Controller
         _context.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
-        public IActionResult Blog()
+
+    [Authorize(Roles = "Administrator")]
+    public IActionResult UnPublish(int Id)
+    {
+        var blog = _context.Blog.Find(Id);
+        blog.IsPublish = false;
+        _context.Update(blog);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+
+    public IActionResult Blog()
     {
         //Category yollar
         ViewBag.Categories = _context.Category.Select(w =>

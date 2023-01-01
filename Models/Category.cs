@@ -1,8 +1,13 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 
-namespace AdminBlog.Models{
-    public class Category{
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+namespace AdminBlog.Models;
+
+public partial class Category
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; } = null!;
+
+    public virtual ICollection<Blog> Blogs { get; } = new List<Blog>();
 }

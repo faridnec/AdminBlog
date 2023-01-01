@@ -1,23 +1,40 @@
-<form method="POST" id="form">
-    <div class="form-group">
-        <input type="text" class="form-control" id="title" placeholder="Title">
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="subtitle" placeholder="Subtitle">
-    </div>
-    <div id="summernote">
 
+<h1 class="display-4">Create a Blog</h1>
+<div class="row">
+    <form method="POST" id="form">
+        <div class="form-group">
+            <input type="text" class="form-control" id="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="subtitle" placeholder="Subtitle">
+        </div>
+        <div id="summernote">
+        </div>
+        <div class="form-group">
+            <input type="file" class="form-control" name="ImagePath">
+        </div>
+        @Html.DropDownList("Categories",null,"Choose a category", new {@class="form-control"})
+        <br />
+        <div class="btn-group-toggle">
+            <button type="button" onclick="Save()" class="btn btn-primary">Add</button>
+            <a asp-area="" asp-controller="Blog" asp-action="Index" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+</div>
+
+
+<header class="masthead" style="background-image: url('/img/posted.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Blog</h1>
+                    <span class="subheading">blog inspires people</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="file" class="form-control" name="ImagePath">
-    </div>
-    @Html.DropDownList("Categories",null,"Choose a category", new {@class="form-control"})
-    <br/>
-    <div class="btn-group-toggle">
-        <button type="button" onclick="Save()" class="btn btn-primary">Add</button>
-        <a href="/Blog" class="btn btn-danger">Cancel</a>
-    </div>
-</form>
+</header>
 
 @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

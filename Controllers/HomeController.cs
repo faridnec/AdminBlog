@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AdminBlog.Models;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminBlog.Controllers;
 
@@ -9,9 +10,9 @@ namespace AdminBlog.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly BlogContext _context;//veri tabani context sinifi tanitma
+    private readonly BlogDbContext _context;//veri tabani context sinifi tanitma
 
-    public HomeController(ILogger<HomeController> logger, BlogContext context)
+    public HomeController(ILogger<HomeController> logger, BlogDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -56,6 +57,7 @@ public class HomeController : Controller
         return RedirectToAction(nameof(Author));
     }
 
+    [Authorize(Roles = "Administrator")]
     public async Task<IActionResult> CategoryDetails(int Id)
     {
         var category = await _context.Category.FindAsync(Id);
@@ -74,12 +76,14 @@ public class HomeController : Controller
         return View(list);
     }
 
+    [Authorize(Roles = "Administrator")]
     public IActionResult Author()//Add category to list and presented in a table
     {
         List<Author> list = _context.Author.ToList();
         return View(list);
     }
 
+    [Authorize(Roles = "Administrator")]
     public async Task<IActionResult> DeleteCategory(int? Id)
     {
         Category category = await _context.Category.FindAsync(Id);
@@ -137,7 +141,7 @@ public class HomeController : Controller
     public IActionResult Posted()
     {
         //LINQ
-        var list = _context.Blog.Take(4).Where(b => b.IsPublish).OrderByDescending(x => x.CreateTime).ToList();//display 4 blogs by descending (able to be modified)
+        var list = _context.Blog.Where(b => b.IsPublish).OrderByDescending(x => x.CreateTime).ToList();//display 4 blogs by descending (able to be modified)
         foreach (var blog in list)
         {
             blog.Author = _context.Author.Find(blog.AuthorId);//id si verilen yazari blog'un yazarina ekliyor
@@ -160,11 +164,6 @@ public class HomeController : Controller
             );
 
         return Redirect(returnUrl);
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

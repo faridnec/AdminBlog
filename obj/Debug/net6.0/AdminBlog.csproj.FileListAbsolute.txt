@@ -310,3 +310,17 @@ C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Hom
 C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Home.Register.en.resources
 C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Home.Register.id.resources
 C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Home.Register.tr.resources
+C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Home.Posted.en.resources
+C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Home.Posted.id.resources
+C:\Users\HP\Desktop\Web\AdminBlog\obj\Debug\net6.0\AdminBlog.Resources.Views.Home.Posted.tr.resources
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\EntityFramework.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\EntityFramework.SqlServerCompact.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\System.Data.SqlServerCe.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\HP\Desktop\Web\AdminBlog\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
