@@ -2,7 +2,7 @@
 # Blog Creator with Asp .Net Core MVC 6.0 
 
 # Kısa Tanıtım
-Bu projede AdminBlog adında bir blog oluşturucu paneli yapmaya çalışıyorum. Bu blog oluşturucu blogları(Blog), blog kategorisini(Category) ve blog yazarını(Author) içerecektir. Oluşturulan bloglar, yazarın onayı ile MeBlog adlı merkez bloglarda yayınlanacaktır.
+Bu projede AdminBlog adında bir blog oluşturucu paneli yapmaya çalışıyorum. Bu blog oluşturucu blogları(Blog), blog kategorisini(Category) ve blog yazarını(Author) içerecektir. Oluşturulan bloglar, yazarın onayı ile [MeBlog](https://github.com/necofd/MeBlog) adlı merkez bloglarda yayınlanacaktır.
 
 Yayınlanan blogların önizlemesi, yazar bloglarını kontrol etmek isterse AdminBlog'da da mevcuttur.Yazar olabilmek için AdminBlog'a kaydolmak gerekir. Üye olduktan sonra sisteme giriş yaparak bloglarını oluşturabilirler.Yazarlar hakkındaki kimlik bilgilerini yalnızca admin kontrol edip değiştirebilir.
 
